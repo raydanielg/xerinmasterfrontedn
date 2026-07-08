@@ -8,6 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CustomStackFullWidth } from "styled-components/CustomStyles.style";
 import H2 from "../../typographies/H2";
+const H2Component = H2 as React.FC<any>;
 import { HomeComponentsWrapper } from "../HomePageComponents";
 import ReelsModal from "./ReelsModal";
 import type { TrendingBiteItem } from "./ReelsModal";
@@ -330,7 +331,7 @@ console.log({showViewAll,totalSize});
           <CustomStackFullWidth alignItems="center" justifyContent="space-between" direction="row">
             <Stack direction="row" alignItems="center" gap={0.8}>
               <TrendingIcon size={24} />
-              <H2 text={t(getModuleWiseTitle())} textAlign="start" component="h2" />
+              <H2Component text={t(getModuleWiseTitle())} textAlign="start" component="h2" />
             </Stack>
           </CustomStackFullWidth>
 
