@@ -21,6 +21,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import QRCodeClient from "../QRCodeClients";
 import { t } from "i18next";
 import AppLinks from "components/footer/footer-middle/AppLinks";
+const AppLinksComponent = AppLinks as React.FC<any>;
 import DollarSignHighlighter from "components/DollarSignHighlighter";
 import Link from "next/link";
 interface DeliveryManAppDownloadProps {
@@ -201,7 +202,7 @@ const DeliveryManAppDownload: React.FC<DeliveryManAppDownloadProps> = ({
                 {t("Scan to Download")}
               </Typography>
             </Box>
-            <AppLinks
+            <AppLinksComponent
               landingPageData={{
                 app_store_link:
                   deliveryManApp?.download_dm_app_links?.apple_store_url,
