@@ -3,6 +3,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
+const SliderComponent = Slider as React.FC<any>;
 import CustomImageContainerJs from "../../CustomImageContainer";
 
 const CustomImageContainer = CustomImageContainerJs as React.FC<any>;
@@ -253,10 +254,10 @@ const FoodModalMediaPreview = ({
         },
       }}
     >
-      <Slider {...sliderSettings}>
+      <SliderComponent {...sliderSettings}>
         {hasVideo && <Box>{videoSlide}</Box>}
         {imageSlides}
-      </Slider>
+      </SliderComponent>
     </Box>
   );
 };
