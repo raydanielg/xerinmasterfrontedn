@@ -78,7 +78,7 @@ const SEO = ({
   const robotsContent = buildRobotsContent()
   const metaTitle = title || siteName;
   const metaDescription = description || "";
-  const metaImage = image || configData?.logo_full_url ;
+  const metaImage = image || "/full_named_logo.svg";
   console.log({metaImage});
   
   return (
@@ -94,7 +94,7 @@ const SEO = ({
         {metaDescription && (
           <meta itemProp="description" content={metaDescription} />
         )}
-        {metaImage ? <meta itemProp="image" content={metaImage || configData?.logo_full_url} />:<meta itemProp="image" content={configData?.logo_full_url} /> }
+        {metaImage ? <meta itemProp="image" content={metaImage} />:<meta itemProp="image" content="/full_named_logo.svg" /> }
 
         {/* Open Graph meta tags for Facebook */}
         <meta property="og:type" content="website" />

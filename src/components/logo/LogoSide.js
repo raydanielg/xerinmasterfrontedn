@@ -11,7 +11,7 @@ const LogoSide = ({ configData, width, height, objectFit }) => {
     >
       <CustomLogo
         atlText="logo"
-        logoImg={configData?.logo_full_url}
+        logoImg="/full_named_logo.svg"
         width={width}
         height={height}
         objectFit={objectFit}

@@ -8,7 +8,6 @@ import phone from "../../../../public/static/footer/phone.svg";
 import { getCurrentModuleType } from "helper-functions/getCurrentModuleType";
 import { ModuleTypes } from "helper-functions/moduleTypes";
 import { CustomStackFullWidth } from "styled-components/CustomStyles.style";
-import CustomImageContainer from "../../CustomImageContainer";
 import AppLinks from "./AppLinks";
 import RouteLinks from "./RouteLinks";
 import SocialLinks from "./SocialLinks";
@@ -36,7 +35,7 @@ const FooterMiddle = (props) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   let token;
-  const businessLogo = configData?.logo_full_url;
+  const businessLogo = "/full_named_logo.svg";
   // console.log("landingPageData", landingPageData);
   return (
     <CustomStackFullWidth sx={{ py: { xs: "10px", sm: "3rem" } }}>
@@ -52,6 +51,9 @@ const FooterMiddle = (props) => {
               sx={{
                 img: {
                   transition: "all ease 0.5s",
+                  maxWidth: "200px",
+                  height: "50px",
+                  objectFit: "contain",
                 },
                 "&:hover": {
                   img: {
@@ -60,12 +62,9 @@ const FooterMiddle = (props) => {
                 },
               }}
             >
-              <CustomImageContainer
+              <img
                 src={businessLogo}
                 alt={`${configData?.business_name}`}
-                width="auto"
-                height="50px"
-                objectfit="contain"
               />
             </Box>
             <SocialLinks

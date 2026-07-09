@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import { styled } from "@mui/material";
-import CustomImageContainer from "../CustomImageContainer";
-import NextImage from "components/NextImage";
 import { getModuleId } from "helper-functions/getModuleId";
 
 export const Logo = styled("div")(({ height, width }) => ({
@@ -41,15 +39,12 @@ const CustomLogo = ({ logoImg, atlText, height, width, objectFit }) => {
     }
   };
   return (
-
     <Logo height={height} width={width} onClick={() => handleClick()}>
-      <NextImage
+      <img
         src={logoImg}
         alt={atlText}
-        objectFit={objectFit ? objectFit : "contain"}
+        style={{ objectFit: objectFit ? objectFit : "contain" }}
         loading="eager"
-        width={100}
-        height={70}
       />
     </Logo>
   );
