@@ -32,26 +32,26 @@ const background = {
 const divider = "#E6E8F0";
 
 const primary = {
-	main: "#039D55",
-	deep: "#026034",
-	light: "#EBFDF2",
-	dark: "#1c6641",
-	semiLight: "#E4FFF3",
+	main: "#F97316",
+	deep: "#C2410C",
+	light: "#FFF7ED",
+	dark: "#EA580C",
+	semiLight: "#FFEDD5",
 	contrastText: "#FFFFFF",
-	customType1: "#0DCB72",
-	customType2: "#3BB77E",
-	customType3: "#29CE00",
+	customType1: "#FB923C",
+	customType2: "#FDBA74",
+	customType3: "#F97316",
 	overLay: "#000000",
-	lite: "rgba(3, 157, 85, 0.1)",
-	icon: "#039D55",
+	lite: "rgba(249, 115, 22, 0.1)",
+	icon: "#F97316",
 };
 const moduleTheme = {
-	pharmacy: "#039D55",
-	ecommerce: "#039D55",
-	food: "#039D55",
-	parcel: "#039D55",
+	pharmacy: "#F97316",
+	ecommerce: "#F97316",
+	food: "#F97316",
+	parcel: "#F97316",
 };
-const horizontalCardBG = "#E4FFF3";
+const horizontalCardBG = "#FFF7ED";
 
 const secondary = {
 	main: "#10B981",

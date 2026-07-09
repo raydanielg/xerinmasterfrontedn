@@ -15,8 +15,6 @@ import {
   Stack,
 } from "@mui/material";
 import { CheckCircle, ArrowForward, Android, Apple } from "@mui/icons-material";
-import { ImageContainer } from "../Registration";
-import CustomImageContainer from "components/CustomImageContainer";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import QRCodeClient from "../QRCodeClients";
 import { t } from "i18next";
@@ -27,7 +25,6 @@ import Link from "next/link";
 interface DeliveryManAppDownloadProps {
   title?: string;
   subtitle?: string;
-  image?: string;
   deliveryManApp?: any;
 }
 
@@ -55,47 +52,7 @@ const DeliveryManAppDownload: React.FC<DeliveryManAppDownloadProps> = ({
           <Grid
             item
             xs={12}
-            md={4}
-            sx={{
-              display: "flex",
-              justifyContent: { xs: "center", md: "flex-start" },
-            }}
-          >
-            <ImageContainer
-              sx={{
-                width: { xs: "100%", md: "288px" },
-                height: { xs: "100%", md: "300px" },
-                borderRadius: "10px",
-              }}
-            >
-              <CustomImageContainer
-                src={deliveryManApp?.download_dm_app_image_full_url}
-                alt="delivery man"
-                width="100%"
-                height="100%"
-                cursor="pointer"
-                mdHeight="300px"
-                maxWidth="288px"
-                objectfit="cover"
-                minwidth="auto"
-                borderRadius="10px"
-                marginBottom="0"
-                smHeight="100%"
-                smMb="0"
-                smMaxWidth="100%"
-                smWidth="100%"
-                aspectRatio="auto"
-                padding="0"
-                loading="lazy"
-                bg="transparent"
-                borderBottomRightRadius="10px"
-              />
-            </ImageContainer>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={8}
+            md={12}
             sx={{ textAlign: { xs: "center", md: "left" } }}
           >
             <Typography

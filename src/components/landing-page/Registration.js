@@ -7,7 +7,6 @@ import {
   useTheme,
 } from "@mui/material";
 import { alpha, Box } from "@mui/system";
-import CustomImageContainer from "../CustomImageContainer";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import QRCodeClient from "./QRCodeClients";
 import { t } from "i18next";
@@ -44,17 +43,7 @@ const Registration = ({ seller_app_download_section }) => {
     }}>
       <Grid container justifyContent="space-between" alignItems="center">
         <Grid container item xs={12} md={7} alignItems="center" spacing={2.5} justifyContent={{ xs: "center", md: "flex-start" }}>
-          <Grid item xs={12} md={3.4} sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-start" } }}>
-            <ImageContainer>
-              <CustomImageContainer
-                src={seller_app_download_section?.download_seller_app_image_full_url}
-                alt="delivery man"
-                width="100%"
-                height="100%"
-              />
-            </ImageContainer>
-          </Grid>
-          <Grid item xs={12} md={8.6} sx={{ textAlign: { xs: "center", md: "left" } }}>
+          <Grid item xs={12} md={12} sx={{ textAlign: { xs: "center", md: "left" } }}>
             <Typography variant="h4" fontSize={{ xs: "18px", md: "30px" }} sx={{ fontWeight: "600" }}>
               <DollarSignHighlighter
                 text={seller_app_download_section?.download_seller_app_title}
