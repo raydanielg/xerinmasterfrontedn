@@ -13,7 +13,6 @@ import {
 import CustomImageContainer from "../../CustomImageContainer";
 import AddressReselect from "../top-navbar/address-reselect/AddressReselect";
 import DrawerMenu from "../top-navbar/drawer-menu/DrawerMenu";
-import MobileModuleSelection from "./mobile-module-select";
 import CustomLogo from "components/logo/CustomLogo";
 import { useRouter } from "next/router";
 
@@ -147,16 +146,7 @@ const ModuleWiseNav = (props) => {
 									align="left"
 									justifyItems="flex-start"
 								>
-									{router.pathname === "/home" &&
-										!router.query.search ? (
-										modules.length >= 2 ? (
-											<MobileModuleSelection />
-										) : (
-											getIcon()
-										)
-									) : (
-										getIcon()
-									)}
+									{getIcon()}
 								</Grid>
 								<Grid
 										item
