@@ -4,7 +4,6 @@ import {
 	CustomBoxFullWidth,
 	CustomStackFullWidth,
 } from "../../../styled-components/CustomStyles.style";
-import CustomImageContainer from "../../CustomImageContainer";
 import DollarSignHighlighter from "../../DollarSignHighlighter";
 import CustomButtonComponent from "./CustomButtonComponent";
 
@@ -13,21 +12,6 @@ const Wrapper = styled(CustomBoxFullWidth)(({ theme }) => ({
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "center",
-}));
-
-const ImageWrapper = styled(CustomStackFullWidth)(({ theme }) => ({
-	// position: "relative",
-	opacity: 0.1,
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center",
-	[theme.breakpoints.down("md")]: {
-		width: "420px",
-	},
-	[theme.breakpoints.down("sm")]: {
-		width: "100%",
-		height: "100%",
-	},
 }));
 const SmallerScreen = (props) => {
 	const { theme, landingPageData, goToApp, t } = props;
@@ -52,14 +36,6 @@ const SmallerScreen = (props) => {
 		>
 			<Grid item xs={12}>
 				<Wrapper>
-					<ImageWrapper>
-						<CustomImageContainer
-							src={landingPageData?.business_image_full_url}
-							objectFit="cover"
-							height="auto"
-							width="100%"
-						/>
-					</ImageWrapper>
 					<CustomStackFullWidth
 						sx={{
 							position: "absolute",

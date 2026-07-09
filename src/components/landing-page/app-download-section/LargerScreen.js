@@ -2,7 +2,6 @@ import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { CustomStackFullWidth } from "styled-components/CustomStyles.style";
 import CustomImageContainer from "../../CustomImageContainer";
 import CustomButtonComponent from "./CustomButtonComponent";
-import NextImage from "components/NextImage";
 
 const LargerScreen = (props) => {
   const { landingPageData, goToApp, t } = props;
@@ -99,27 +98,6 @@ const LargerScreen = (props) => {
             )}
           </CustomStackFullWidth>
         </CustomStackFullWidth>
-      </Stack>
-      <Stack
-        sx={{
-          position: "absolute",
-          // width:"40%",
-          height: "100%",
-          top: 0,
-          right: 0,
-          img: {
-            width: "100%",
-            height: "100%",
-            aspectRatio: "1/1",
-          }
-        }}
-      >
-        <NextImage
-          src={landingPageData?.business_image_full_url}
-          objectFit="cover"
-          width={500}
-          height={500}
-        />
       </Stack>
     </>
   );
