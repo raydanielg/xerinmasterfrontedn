@@ -2,8 +2,6 @@ import React from "react";
 import { Box, Typography, Grid, useTheme, Stack } from "@mui/material";
 import { t } from "i18next";
 
-import { ImageContainer } from "../Registration";
-import CustomImageContainer from "components/CustomImageContainer";
 import QRCodeClient from "../QRCodeClients";
 import AppLinks from "components/footer/footer-middle/AppLinks";
 import DollarSignHighlighter from "components/DollarSignHighlighter";
@@ -15,9 +13,6 @@ interface RiderAppDownloadProps {
 const RiderAppDownload: React.FC<RiderAppDownloadProps> = ({ riderApp }) => {
   const theme = useTheme();
   const appLinks = riderApp?.download_rider_app_links || riderApp?.download_dm_app_links;
-  const sectionImage =
-    riderApp?.download_rider_app_image_full_url ||
-    riderApp?.download_dm_app_image_full_url;
   const sectionTitle = riderApp?.download_rider_app_title || riderApp?.download_dm_app_title;
   const sectionSubTitle =
     riderApp?.download_rider_app_sub_title || riderApp?.download_dm_app_sub_title;
@@ -112,7 +107,7 @@ const RiderAppDownload: React.FC<RiderAppDownloadProps> = ({ riderApp }) => {
           <Grid
             item
             xs={12}
-            md={8}
+            md={12}
             sx={{ textAlign: { xs: "center", md: "center" } }}
           >
             <Typography
@@ -132,46 +127,6 @@ const RiderAppDownload: React.FC<RiderAppDownloadProps> = ({ riderApp }) => {
                 __html: sectionSubTitle,
               }}
             />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={4}
-            sx={{
-              display: "flex",
-              justifyContent: { xs: "center", md: "flex-end" },
-            }}
-          >
-            <ImageContainer
-              sx={{
-                width: { xs: "100%", md: "288px" },
-                height: { xs: "100%", md: "300px" },
-                borderRadius: "10px",
-              }}
-            >
-              <CustomImageContainer
-                src={sectionImage}
-                alt="rider app"
-                width="100%"
-                height="100%"
-                cursor="pointer"
-                mdHeight="300px"
-                maxWidth="288px"
-                objectfit="cover"
-                minwidth="auto"
-                borderRadius="10px"
-                marginBottom="0"
-                smHeight="100%"
-                smMb="0"
-                smMaxWidth="100%"
-                smWidth="100%"
-                aspectRatio="auto"
-                padding="0"
-                loading="lazy"
-                bg="transparent"
-                borderBottomRightRadius="10px"
-              />
-            </ImageContainer>
           </Grid>
         </Grid>
 

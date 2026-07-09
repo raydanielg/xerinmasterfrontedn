@@ -5,7 +5,7 @@ const normalizeModuleValue = (value) =>
 
 const blockedModuleTypes = new Set(["ridershare", "rideshare"]);
 
-const ALLOWED_MODULE_TYPES = new Set(["ecommerce", "parcel"]);
+const ALLOWED_MODULE_TYPES = new Set(["ecommerce"]);
 
 export const isRiderShareModule = (moduleItem) => {
   if (!moduleItem) return false;

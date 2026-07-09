@@ -14,7 +14,6 @@ import SolutionSvg from "./SolutionSvg";
 import { t } from "i18next";
 import QRCodeClient from "./QRCodeClients";
 import AppLinks from "components/footer/footer-middle/AppLinks";
-import NextImage from "components/NextImage";
 
 export const ComponentTwoContainer = styled(Box)(
   ({ theme, paddingTop, paddingBottom }) => ({
@@ -92,30 +91,6 @@ const ComponentTwo = ({ user_app_download_section }) => {
               </Stack>
             </Stack>
 
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            display="flex"
-            justifyContent={{ xs: "center", md: "flex-end" }} // 👈 Align right on desktop, center on mobile
-            alignItems="center"
-            sx={{
-              img: {
-                maxWidth: "450px",
-                height: "100%",
-                width: "100%",
-              }
-            }}
-          >
-            <NextImage
-              src={user_app_download_section?.download_user_app_image_full_url}
-              alt="banners"
-              height={360}
-              width={450}
-              objectFit="cover"
-              borderRadius="5px"
-            />
           </Grid>
         </Grid>
       </CustomContainer >
