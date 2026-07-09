@@ -149,44 +149,17 @@ const ManageSearch = ({
     };
   }, [searchRef]);
 
-  const dynamicLabel = () => {
-    if (getCurrentModuleType() === ModuleTypes.GROCERY) {
-      return `Search for grocery or store...`;
-    }
-    if (getCurrentModuleType() === ModuleTypes.PHARMACY) {
-      return `Search for medicine or store...`;
-    }
-    if (getCurrentModuleType() === ModuleTypes.ECOMMERCE) {
-      return `Search for products or store...`;
-    }
-  };
-
-  const getModuleWiseSearch = () => {
-    if (getCurrentModuleType() === ModuleTypes.FOOD) {
-      return (
-       
-          <CustomSearch
-            label={t("Search foods and restaurants...")}
-            handleSearchResult={handleKeyPress}
-            selectedValue={searchQuery}
-            setIsEmpty={setIsEmpty}
-            handleOnFocus={handleOnFocus}
-            setSearchValue={setSearchValue}
-          />
-        
-      );
-    } else {
-      return (
-        <CustomSearch
-          label={t(dynamicLabel())}
-          handleSearchResult={handleKeyPress}
-          selectedValue={searchQuery}
-          setIsEmpty={setIsEmpty}
-          handleOnFocus={handleOnFocus}
-          setSearchValue={setSearchValue}
-        />
-      );
-    }
+const getModuleWiseSearch = () => {
+    return (
+      <CustomSearch
+        label={t("Search for products or store...")}
+        handleSearchResult={handleKeyPress}
+        selectedValue={searchQuery}
+        setIsEmpty={setIsEmpty}
+        handleOnFocus={handleOnFocus}
+        setSearchValue={setSearchValue}
+      />
+    );
   };
 console.log({openSearchSuggestions});
 

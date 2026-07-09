@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { setFeaturedCategories, setRecommendedStores } from "redux/slices/storedData";
 import { saveModuleParam, getModuleIdentifier } from "../../utils/moduleParamManager";
-import { filterOutRiderShareModules } from "helper-functions/moduleFilter";
+import { filterOutRiderShareModules, filterAllowedModules } from "helper-functions/moduleFilter";
 
 const Container = styled(Stack)(({ theme }) => ({
   position: "fixed",
@@ -130,9 +130,10 @@ const ModuleSelect = ({
   }
   console.log("vvvv", data);
   const filteredModules = filterOutRiderShareModules(data);
+  const allowedModules = filterAllowedModules(filteredModules);
   const modulesToShow = currentZoneIds
-    ? zoneWiseModule(filteredModules)
-    : filteredModules;
+    ? zoneWiseModule(allowedModules)
+    : allowedModules;
   return (
     <Container p=".8rem" spacing={2}>
       {data ? (

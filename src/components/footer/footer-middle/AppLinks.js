@@ -7,6 +7,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import appleicon from "../../../../public/static/footer/apple.svg";
 import playstoreicon from "../../../../public/static/footer/playstore.svg";
@@ -148,6 +149,14 @@ const AppLinks = (props) => {
   );
 };
 
-AppLinks.propTypes = {};
+AppLinks.propTypes = {
+  graybackground: PropTypes.string,
+  landingPageData: PropTypes.shape({
+    app_store_link: PropTypes.string,
+    play_store_link: PropTypes.string,
+    app_status: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    play_status: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
+};
 
 export default AppLinks;

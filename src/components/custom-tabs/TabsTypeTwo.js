@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Box, Stack } from "@mui/system";
 import { styled, Typography } from "@mui/material";
 import { t } from "i18next";
@@ -49,6 +50,10 @@ const TabsTypeTwo = (props) => {
   );
 };
 
-TabsTypeTwo.propTypes = {};
+TabsTypeTwo.propTypes = {
+  tabs: PropTypes.array,
+  currentTab: PropTypes.number,
+  setCurrentTab: PropTypes.func,
+};
 
 export default TabsTypeTwo;

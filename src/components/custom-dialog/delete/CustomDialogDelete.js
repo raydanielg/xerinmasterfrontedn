@@ -80,6 +80,8 @@ CustomDialogDelete.propTypes = {
   onClick: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
 };
 
 export default CustomDialogDelete;

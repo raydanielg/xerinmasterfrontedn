@@ -5,6 +5,8 @@ const normalizeModuleValue = (value) =>
 
 const blockedModuleTypes = new Set(["ridershare", "rideshare"]);
 
+const ALLOWED_MODULE_TYPES = new Set(["ecommerce", "parcel"]);
+
 export const isRiderShareModule = (moduleItem) => {
   if (!moduleItem) return false;
 
@@ -17,5 +19,13 @@ export const isRiderShareModule = (moduleItem) => {
   );
 };
 
+export const isAllowedModuleType = (moduleItem) => {
+  if (!moduleItem) return false;
+  return ALLOWED_MODULE_TYPES.has(moduleItem?.module_type);
+};
+
 export const filterOutRiderShareModules = (modules = []) =>
   modules?.filter((moduleItem) => !isRiderShareModule(moduleItem)) || [];
+
+export const filterAllowedModules = (modules = []) =>
+  modules?.filter((moduleItem) => isAllowedModuleType(moduleItem)) || [];

@@ -1,26 +1,19 @@
-import { LandingLayout } from "components/layout/LandingLayout";
-import LandingPage from "../src/components/landing-page";
-import CssBaseline from "@mui/material/CssBaseline";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setConfigData, setLandingPageData } from "redux/slices/configData";
+import { setConfigData } from "redux/slices/configData";
 import Router from "next/router";
 import SEO from "../src/components/seo";
-import useGetLandingPage from "../src/api-manage/hooks/react-query/useGetLandingPage";
 import { useGetConfigData } from "../src/api-manage/hooks/useGetConfigData";
-import { RTL } from "components/rtl";
+import { filterAllowedModules } from "helper-functions/moduleFilter";
 
 const Root = (props) => {
-	const { configData, landingPageData } = props;
-	const { data, refetch } = useGetLandingPage();
+	const { configData } = props;
 	const dispatch = useDispatch();
 	const { data: dataConfig, refetch: configRefetch } = useGetConfigData();
 	useEffect(() => {
 		configRefetch();
-		refetch();
 	}, []);
 	useEffect(() => {
-		dispatch(setLandingPageData(data));
 		if (dataConfig) {
 			if (dataConfig.length === 0) {
 				Router.push("/404");
@@ -28,37 +21,29 @@ const Root = (props) => {
 				Router.push("/maintainance");
 			} else {
 				dispatch(setConfigData(dataConfig));
+				let allowedModules = filterAllowedModules(dataConfig?.modules || []);
+				// Fallback when backend returns module: null but module_config exists
+				if (allowedModules.length === 0 && dataConfig?.module_config?.module_type?.includes("ecommerce")) {
+					allowedModules = [{ module_type: "ecommerce", slug: "ecommerce", id: 4 }];
+				}
+				const ecommerceModule = allowedModules.find(
+					(m) => m.module_type === "ecommerce"
+				) || allowedModules[0];
+				if (ecommerceModule) {
+					const moduleSlug = ecommerceModule.slug || ecommerceModule.id;
+					Router.replace(`/home?module=${moduleSlug}`);
+				}
 			}
-		} else {
 		}
-	}, [dataConfig, data]);
-	let lanDirection = undefined;
-
-	if (typeof window !== "undefined") {
-		lanDirection = JSON.parse(localStorage.getItem("settings"))
-	}
-	// console.log({ lanDirection })
+	}, [dataConfig]);
 	return (
 		<>
-			<CssBaseline />
-			{/* <DynamicFavicon configData={configData} /> */}
 			<SEO
-				image={landingPageData?.meta_image || configData?.fav_icon_full_url}
 				businessName={configData?.business_name}
 				configData={configData}
-				title={landingPageData?.meta_title || configData?.business_name}
-				description={landingPageData?.meta_description || configData?.meta_description}
+				title={configData?.business_name}
+				description={configData?.meta_description}
 			/>
-			{data && (
-				<LandingLayout configData={dataConfig} landingPageData={data}>
-
-					<LandingPage
-						configData={dataConfig}
-						landingPageData={data}
-					/>
-
-				</LandingLayout>
-			)}
 		</>
 	);
 };
@@ -80,20 +65,6 @@ export const getServerSideProps = async (context) => {
 		}
 	);
 	const config = await configRes.json();
-	const landingPageRes = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/react-landing-page`,
-		{
-			method: "GET",
-			headers: {
-				"X-software-id": 33571750,
-				"X-server": "server",
-				"X-localization": language,
-				origin: process.env.NEXT_CLIENT_HOST_URL,
-			},
-		}
-	);
-	const landingPageData = await landingPageRes.json();
-	// Set cache control headers for 1 hour (3600 seconds)
 	res.setHeader(
 		"Cache-Control",
 		"public, s-maxage=3600, stale-while-revalidate"
@@ -102,7 +73,6 @@ export const getServerSideProps = async (context) => {
 	return {
 		props: {
 			configData: config,
-			landingPageData: landingPageData
 		},
 	};
 };

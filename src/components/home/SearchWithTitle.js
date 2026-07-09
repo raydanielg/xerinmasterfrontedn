@@ -5,7 +5,7 @@ import { ModuleTypes } from "helper-functions/moduleTypes";
 import { CustomStackFullWidth } from "styled-components/CustomStyles.style";
 import ManageSearch from "../header/second-navbar/ManageSearch";
 import TrackParcelFromHomePage from "../parcel/TrackParcelFromHomePage";
-import { useSelector } from "react-redux";
+
 
 const SearchWithTitle = (props) => {
   const theme = useTheme();
@@ -13,42 +13,18 @@ const SearchWithTitle = (props) => {
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const moduleType = getCurrentModuleType();
   const { zoneid, token, searchQuery, name, query, currentTab } = props;
-  const { configData } = useSelector((state) => state.configData);
-
-  const getBannerTexts1 = t("Get your car rental service with")
-  const getBannerSubTexts = t("with affordable price.")
 
   const getBannerTexts = () => {
     switch (getCurrentModuleType()) {
-      case ModuleTypes.GROCERY:
-        return {
-          title: "Fresh Item that deserve to eat",
-          subTitle: "Get your groceries items delivered in less than an hour",
-        };
-      case ModuleTypes.PHARMACY:
-        return {
-          title: "Quality Medicines & Health care at your Doorstep.",
-          subTitle: "",
-        };
       case ModuleTypes.ECOMMERCE:
         return {
           title: "Exclusive collection for everyone",
           subTitle: "Get Your Desired High Quality Products Here",
         };
-      case ModuleTypes.FOOD:
-        return {
-          title: "FIND YOUR HAPPINESS",
-          subTitle: "For the love of delicious food.",
-        };
       case ModuleTypes.PARCEL:
         return {
           title: "Track your Products",
           subTitle: "Now you can track your products easily whenever you want.",
-        };
-      case ModuleTypes.RENTAL:
-        return {
-          title: "Rent best car for best experience",
-          subTitle: `${getBannerTexts1} ${configData?.business_name} ${getBannerSubTexts}`,
         };
       default:
         return {
@@ -79,12 +55,7 @@ const SearchWithTitle = (props) => {
           component="h1"
 
           sx={{
-            fontSize: {
-              md: ModuleTypes.RENTAL === "rental" && "30px !important",
-              color: moduleType === "parcel" ? "black" : "inherit"
-            },
-            textTransform:
-              ModuleTypes.RENTAL === "rental" ? "capitalize" : "initial",
+            color: moduleType === "parcel" ? "black" : "inherit"
           }}
         >
           {t(getBannerTexts().title)}
@@ -103,7 +74,7 @@ const SearchWithTitle = (props) => {
 
       {moduleType === "parcel" ? (
         <TrackParcelFromHomePage />
-      ) : moduleType === "rental" ? null : (
+      ) : (
         <ManageSearch
           zoneid={zoneid}
           token={token}

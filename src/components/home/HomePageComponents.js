@@ -14,7 +14,7 @@ import {
 } from "redux/slices/categoryIds";
 import { setWishList } from "redux/slices/wishList";
 import { baseUrl } from "api-manage/MainApi";
-import CashBackPopup from "components/cash-back-popup/CashBackPopup";
+
 import { getCurrentModuleType } from "helper-functions/getCurrentModuleType";
 import { getToken } from "helper-functions/getToken";
 import { ModuleTypes } from "helper-functions/moduleTypes";
@@ -25,16 +25,10 @@ import PushNotificationLayout from "../PushNotificationLayout";
 import CustomModal from "../modal";
 import LastOrderReview from "./LastOrderReview";
 import SearchWithTitle from "./SearchWithTitle";
-import Grocery from "./module-wise-components/Grocery";
 import Shop from "./module-wise-components/ecommerce";
-import FoodModule from "./module-wise-components/food";
 import Parcel from "./module-wise-components/parcel/Index";
-import Pharmacy from "./module-wise-components/pharmacy/Pharmacy";
 
 import TopBanner from "./top-banner";
-import TaxiSearchPanel from "components/home/module-wise-components/rental/components/global/search/TaxiSearchPanel";
-import { useGetWishList } from "api-manage/hooks/react-query/rental-wishlist/useGetWishlist";
-import Rental from "components/home/module-wise-components/rental/Rental";
 import { useGetFailedPayment } from "api-manage/hooks/react-query/useGetFailedPayment";
 import IncompleteOrderModal from "components/home/IncompleteOrderModal";
 import PaymentMethod from "components/checkout/PaymentMethod";
@@ -124,15 +118,10 @@ const HomePageComponents = ({ configData, landingPageData }) => {
     dispatch(setWishList(response));
   };
   const { refetch } = useWishListGet(onSuccessHandler);
-  const { refetch: rentalWishlistRefetch } = useGetWishList(onSuccessHandler);
 
   useEffect(() => {
     if (token) {
-      if (moduleType === "rental") {
-        rentalWishlistRefetch();
-      } else {
-        refetch();
-      }
+      refetch();
     }
   }, [token]);
 
@@ -164,20 +153,10 @@ const HomePageComponents = ({ configData, landingPageData }) => {
 
   const getModuleWiseComponents = () => {
     switch (getCurrentModuleType()) {
-      case ModuleTypes.GROCERY:
-        return <Grocery configData={configData} />;
-      case ModuleTypes.PHARMACY:
-        return <Pharmacy configData={configData} />;
       case ModuleTypes.ECOMMERCE:
         return <Shop configData={configData} />;
-      case ModuleTypes.FOOD:
-        return <FoodModule configData={configData} />;
       case ModuleTypes.PARCEL:
         return <Parcel configData={configData} />;
-      case ModuleTypes.RENTAL:
-        return (
-          <Rental configData={configData} landingPageData={landingPageData} />
-        );
       default:
         return null;
     }
@@ -261,11 +240,7 @@ const HomePageComponents = ({ configData, landingPageData }) => {
               />
             </CustomStackFullWidth>
           </CustomStackFullWidth>
-          {moduleType === "rental" && (
-            <Box>
-              <TaxiSearchPanel position="relative" />
-            </Box>
-          )}
+          
           <Box width="100%" sx={{ mt: "34px" }}>
             {getModuleWiseComponents()}
             </Box>
@@ -322,7 +297,7 @@ const HomePageComponents = ({ configData, landingPageData }) => {
             </Box>
           </Box>
         </CustomModal>
-        {token && getCurrentModuleType() !== "parcel" && <CashBackPopup />}
+        
         {token && failPayment && !(Array.isArray(failPayment) && failPayment.length === 0) && (
           <CustomModal
             handleClose={() => {
